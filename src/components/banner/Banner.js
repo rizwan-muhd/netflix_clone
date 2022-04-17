@@ -1,16 +1,31 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import './banner.css'
+import axios from '../../axios'
+import { API_KEY,imgUrl } from '../constants/Constants'
 function Banner() {
+const [movie,setMovie] = useState()
+ useEffect(() => {
+   axios.get(`trending/all/week?api_key=${API_KEY}&language=en-US`).then((response)=>{
+     console.log(response.data.results);
+     setMovie(response.data.results[12])
+     
+     
+   })
+ },[])
+ 
+
   return (
-    <div className='banner'>
+    <div className='banner' style={{backgroundImage:`url(${movie ?imgUrl+ movie.backdrop_path: ""})`}}>
+      
       <div className="condent">
-        <h1 className='movie-title'>Money Hiest</h1>
+        <h1 className='movie-title'>{movie ? movie.title: ""}</h1>
         <div className="buttons">
-          <button>Play</button>
-          <button>My list</button>
+          <button className='play-button'>Play</button>
+          <button className='list-button'>My list</button>
         </div>
-        <p className='movie-description'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been <br/> the industry's standard dummy text ever since the 1500s, </p>
+        <p className='movie-description'>{movie ? movie.overview:""} </p>
       </div>
+      <div className="fade_botton"></div>
       </div>
   )
 }
