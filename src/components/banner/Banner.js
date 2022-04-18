@@ -7,7 +7,7 @@ const [movie,setMovie] = useState()
  useEffect(() => {
    axios.get(`trending/all/week?api_key=${API_KEY}&language=en-US`).then((response)=>{
      console.log(response.data.results);
-     setMovie(response.data.results[12])
+     setMovie(response.data.results[18])
      
      
    })
@@ -21,7 +21,7 @@ const [movie,setMovie] = useState()
         <h1 className='movie-title'>{movie ? movie.title: ""}</h1>
         <div className="buttons">
           <button className='play-button'>Play</button>
-          <button className='list-button'>My list</button>
+          <button className='list-button'>+My list</button>
         </div>
         <p className='movie-description'>{movie ? movie.overview:""} </p>
       </div>
