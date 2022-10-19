@@ -1,0 +1,8 @@
+.trailer-page{
+   background-color: black;
+   width: 100%;
+}
+.trailer-page button{
+    background-color: red;
+    color: white;
+}
